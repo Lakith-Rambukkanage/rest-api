@@ -1,23 +1,30 @@
-package iota.springboot.topic;
+package iota.springboot.courses;
+
+import iota.springboot.topic.Topic;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Topic {
+public class Course {
 
     @Id
     private String id;
     private String name;
     private String description;
 
-    public Topic(String id, String name, String description) {
+    @ManyToOne
+    private Topic topic;
+
+    public Course(String id, String name, String description, Topic topic) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.topic = topic;
     }
 
-    public Topic() {
+    public Course() {
     }
 
     //setters
@@ -44,5 +51,13 @@ public class Topic {
 
     public String getDescription() {
         return description;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }
